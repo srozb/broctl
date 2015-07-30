@@ -102,7 +102,7 @@ class Configuration:
     # Do a basic sanity check on some critical options.
     def _check_options(self):
         dirs = ("brobase", "logdir", "spooldir", "cfgdir", "broscriptdir", "bindir", "libdirinternal", "plugindir", "scriptsdir")
-        files = ("makearchivename", )
+        files = ("bro", "makearchivename")
 
         for d in dirs:
             v = self.config[d]
@@ -775,7 +775,7 @@ class Configuration:
             msg = ""
             if output:
                 msg = " with output:\n%s" % "\n".join(output)
-            raise ConfigurationError("running \"bro -v\" failed%s" % msg)
+            raise ConfigurationError("running \"%s -v\" failed%s" % (bro, msg))
 
         match = re.search(".* version ([^ ]*).*$", version)
         if not match:
